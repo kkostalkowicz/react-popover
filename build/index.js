@@ -401,7 +401,7 @@ var Popover = function (_React$Component) {
       this.exitingAnimationTimer2 = setTimeout(function () {
         setTimeout(function () {
           if (_this2.containerEl) {
-            _this2.containerEl.style.transform = flowToPopoverTranslations[_this2.zone.flow] + "(" + _this2.zone.order * 50 + "px)";
+            _this2.containerEl.style.transform = flowToPopoverTranslations[_this2.zone.flow] + "(" + _this2.zone.order * _this2.props.enterExitTransitionDistancePx + "px)";
             _this2.containerEl.style.opacity = "0";
           }
         }, 0);
@@ -416,7 +416,7 @@ var Popover = function (_React$Component) {
     value: function animateEnter() {
       /* Prepare `entering` style so that we can then animate it toward `entered`. */
 
-      this.containerEl.style.transform = flowToPopoverTranslations[this.zone.flow] + "(" + this.zone.order * 50 + "px)";
+      this.containerEl.style.transform = flowToPopoverTranslations[this.zone.flow] + "(" + this.zone.order * this.props.enterExitTransitionDistancePx + "px)";
       this.containerEl.style[jsprefix("Transform")] = this.containerEl.style.transform;
       this.containerEl.style.opacity = "0";
 
@@ -542,6 +542,7 @@ Popover.propTypes = {
   appendTarget: _propTypes2.default.object,
   className: _propTypes2.default.string,
   enterExitTransitionDurationMs: _propTypes2.default.number,
+  enterExitTransitionDistancePx: _propTypes2.default.number,
   isOpen: _propTypes2.default.bool,
   offset: _propTypes2.default.number,
   place: _propTypes2.default.oneOf(_layout2.default.validTypeValues),
@@ -561,6 +562,7 @@ Popover.defaultProps = {
   isOpen: false,
   onOuterAction: _utils2.default.noop,
   enterExitTransitionDurationMs: 500,
+  enterExitTransitionDistancePx: 50,
   children: null,
   refreshIntervalMs: 200,
   appendTarget: _platform2.default.isClient ? _platform2.default.document.body : null
